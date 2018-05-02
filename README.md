@@ -1,23 +1,25 @@
-# nasipadang v.1.0.1
+# :curry:nasipadang
+
+#### v.1.0.1
 
 ### Boilerplate Simple for Front-End Development
 
-### Getting Started
+#### Getting Started
 
-#### To use this boilerplate
+To use this boilerplate
 
 ```
 clone this repo
 npm install / yarn install
 ```
 
-#### To start this boilerplate
+To start this boilerplate
 
 ```
 gulp serve
 ```
 
-### Other command
+#### Other command
 
 ```
 concat CSS : gulp sass
@@ -25,10 +27,10 @@ compile JS : webpack -d
 templating HTML : gulp pug
 ```
 
-### Tech Stack
+#### Tech Stack
 
 * `SCSS`: Pre-processing CSS
 * `Gulp`: Task Runner
 * `Webpack + Babel`: Compiler ES6
 * `Pug (Jade)`: Templating for HTML
-* `Bootstrap`; Framework CSS
+* `Bootstrap`: Framework CSS
