@@ -1,13 +1,34 @@
+# nasipadang v.1.0.1
 
-# amorfati v.1.0.0
+### Boilerplate Simple for Front-End Development
 
-Boilerplate Simple for Front-End
+### Getting Started
 
-## Getting Started
+#### To use this boilerplate
 
 ```
-start : gulp serve
+clone this repo
+npm install / yarn install
+```
+
+#### To start this boilerplate
+
+```
+gulp serve
+```
+
+### Other command
+
+```
 concat CSS : gulp sass
 compile JS : webpack -d
 templating HTML : gulp pug
 ```
+
+### Tech Stack
+
+* `SCSS`: Pre-processing CSS
+* `Gulp`: Task Runner
+* `Webpack + Babel`: Compiler ES6
+* `Pug (Jade)`: Templating for HTML
+* `Bootstrap`; Framework CSS

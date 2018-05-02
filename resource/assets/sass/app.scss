@@ -1,12 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600,700,800');
+@import url("https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600,700,800");
 
-@import "scaffold";
+@import "bootstrap";
+// @import "scaffold";
 @import "styleguide";
-@import "hamburgericon";
-@import "hamburgermenu";
-@import "button";
 
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   background-color: $main-bg;
 }
