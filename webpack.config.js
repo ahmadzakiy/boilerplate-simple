@@ -11,11 +11,11 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_module/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         query: {
-          presets: ['es2015']
+          presets: ["es2015"]
         }
       }
     ]
   }
-}
+};

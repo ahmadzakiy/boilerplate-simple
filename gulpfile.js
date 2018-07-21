@@ -1,47 +1,93 @@
-var gulp = require("gulp"),
+const gulp = require("gulp"),
   sass = require("gulp-sass"),
   autoprefixer = require("gulp-autoprefixer"),
   browserSync = require("browser-sync"),
   webpack = require("webpack-stream"),
-  pug = require("gulp-pug"),
   uglify = require("gulp-uglify"),
-  cleanCSS = require("gulp-clean-css");
+  cleanCSS = require("gulp-clean-css"),
+  plumber = require("gulp-plumber"),
+  include = require("gulp-include"),
+  notify = require("gulp-notify");
 
-// gulp.task("pug", function buildHTML() {
-//   return gulp
-//     .src("./resource/pug/*.pug")
-//     .pipe(pug())
-//     .pipe(gulp.dest("./public/"));
-// });
+gulp.task("html", () => {
+  return gulp
+    .src("./resource/pages/**/*.html")
+    .pipe(include())
+    .pipe(
+      plumber({
+        errorHandler: function(err) {
+          notify.onError({
+            title: "Gulp error in " + err.plugin,
+            message: err.toString()
+          })(err);
+        }
+      })
+    )
+    .pipe(plumber.stop())
+    .pipe(gulp.dest("./public"))
+    .pipe(notify("HTML updated!"));
+});
 
-gulp.task("sass", function() {
+gulp.task("css", () => {
   return gulp
     .src("./resource/assets/sass/**/*.scss")
+    .pipe(
+      plumber({
+        errorHandler: function(err) {
+          notify.onError({
+            title: "Gulp error in " + err.plugin,
+            message: err.toString()
+          })(err);
+        }
+      })
+    )
     .pipe(sass())
     .pipe(autoprefixer())
     .pipe(cleanCSS({ compatibility: "ie8" }))
-    .pipe(gulp.dest("./public/assets/css/"));
+    .pipe(plumber.stop())
+    .pipe(gulp.dest("./public/assets/css/"))
+    .pipe(notify("CSS updated!"));
 });
 
-gulp.task("script", function() {
+gulp.task("javascript", () => {
   return gulp
-    .src("./resource/assets/js/app.js")
+    .src("./resource/assets/js/*.js")
+    .pipe(
+      plumber({
+        errorHandler: function(err) {
+          notify.onError({
+            title: "Gulp error in " + err.plugin,
+            message: err.toString()
+          })(err);
+        }
+      })
+    )
     .pipe(webpack(require("./webpack.config.js")))
     .pipe(uglify({ mangle: false }))
-    .pipe(gulp.dest("./public/assets/js/"));
+    .pipe(plumber.stop())
+    .pipe(gulp.dest("./public/assets/js/"))
+    .pipe(notify("JS updated!"));
 });
 
-gulp.task("serve", function() {
+gulp.task("serve", () => {
   browserSync.init({
     server: {
       baseDir: "./public/"
-    }
+    },
+    port: 3000,
+    notify: false,
+    ghostMode: false,
+    online: false,
+    open: true
   });
-  gulp.watch("./resource/assets/sass/**/*.scss", ["sass"]);
-  gulp.watch("./resource/assets/js/**/*.js", ["script"]);
-  // gulp.watch("./public/build/*.pug", ["pug"]);
+  gulp.watch("./resource/assets/sass/**/*.scss", ["css"]);
+  gulp.watch("./resource/assets/js/**/*.js", ["javascript"]);
+  gulp.watch(
+    ["./resource/pages/*.html", "./resouce/pages/includes/*.html"],
+    ["html"]
+  );
 
-  gulp.watch("./public/assets/css/**/*.css").on("change", browserSync.reload);
-  gulp.watch("./public/assets/js/app.js").on("change", browserSync.reload);
+  gulp.watch("./public/assets/css/*.css").on("change", browserSync.reload);
+  gulp.watch("./public/assets/js/*.js").on("change", browserSync.reload);
   gulp.watch("./public/*.html").on("change", browserSync.reload);
 });

@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600,700,800");
+@import url("https://fonts.googleapis.com/css?family=Gaegu:300,400,700");
 
 @import "bootstrap";
 // @import "scaffold";
 @import "styleguide";
 
 body {
-  font-family: "Raleway", sans-serif;
-  background-color: $main-bg;
+  font-family: "Gaegu", cursive;
+  background-color: $primary-white;
 }
