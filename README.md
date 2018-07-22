@@ -1,8 +1,8 @@
 # :curry:nasipadang
 
-#### v.1.0.1
+#### v.1.0.2
 
-### Boilerplate Simple for Front-End Development
+### Simple Boilerplate for Front-End Development
 
 #### Getting Started
 
@@ -22,15 +22,14 @@ gulp serve
 #### Other command
 
 ```
-concat CSS : gulp sass
-compile JS : webpack -d
-templating HTML : gulp pug
+compile HTML: gulp html
+concat CSS: gulp css
+compile JS: gulp javascript
 ```
 
 #### Tech Stack
 
-* `SCSS`: Pre-processing CSS
-* `Gulp`: Task Runner
-* `Webpack + Babel`: Compiler ES6
-* `Pug (Jade)`: Templating for HTML
-* `Bootstrap`: Framework CSS
+- `SCSS`: Pre-processing CSS
+- `Gulp`: Task Runner
+- `Webpack + Babel`: Compiler ES6
+- `Bootstrap`: Framework CSS

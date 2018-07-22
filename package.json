@@ -1,7 +1,7 @@
 {
   "name": "nasipadang",
-  "version": "1.0.0",
-  "description": "boilerplate front-end development",
+  "version": "1.0.2",
+  "description": "simple boilerplate for front-end development",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
