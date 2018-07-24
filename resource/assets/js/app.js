@@ -1,4 +1,6 @@
-window.$ = window.jQuery = require("jquery");
+// window.$ = window.jQuery = require("jquery");
+
+//=include jquery.min.js
 
 // try fetch
 fetch("https://jsonplaceholder.typicode.com/posts/1")
