@@ -12,8 +12,7 @@ const gulp = require("gulp"),
 
 gulp.task("html", () => {
   return gulp
-    .src("./resource/pages/**/*.html")
-    .pipe(include())
+    .src("./resource/pages/*.html")
     .pipe(
       plumber({
         errorHandler: function (err) {
@@ -24,6 +23,7 @@ gulp.task("html", () => {
         }
       })
     )
+    .pipe(include())
     .pipe(plumber.stop())
     .pipe(gulp.dest("./public"))
     .pipe(notify("HTML updated!"));
@@ -58,7 +58,6 @@ gulp.task("js", () => {
   return (
     gulp
     .src("./resource/assets/js/app.js")
-    .pipe(include())
     .pipe(
       plumber({
         errorHandler: function (err) {

@@ -1,6 +1,6 @@
 # :curry:nasipadang
 
-#### v.1.0.2
+#### v.1.1.0
 
 ### Simple Boilerplate for Front-End Development
 
@@ -24,7 +24,7 @@ gulp serve
 ```
 compile HTML: gulp html
 concat CSS: gulp css
-compile JS: gulp javascript
+compile JS: gulp js
 ```
 
 #### Tech Stack
