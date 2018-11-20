@@ -6,8 +6,8 @@ $primary-white: #f2f2f2;
   margin-right: 0;
   margin-left: 0;
 
-  & > [class^="col-"],
-  & > [class*=" col-"] {
+  &>[class^="col-"],
+  &>[class*=" col-"] {
     padding-right: 0;
     padding-left: 0;
   }
