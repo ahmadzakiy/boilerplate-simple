@@ -1,36 +1,33 @@
 {
   "name": "nasipadang",
-  "version": "1.1.0",
-  "description": "simple boilerplate for front-end development",
-  "main": "index.js",
+  "private": true,
+  "description": "Boilerplate for simple website",
+  "version": "2.0.0",
+  "author": "Ahmad Zakiy <in.zakiy@gmail.com>",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "gulp",
+    "build": "gulp build"
   },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/ahmadzakiy/nasipadang"
   },
-  "author": "ahmadzakiy",
-  "license": "MIT",
-  "dependencies": {
-    "jquery": "^3.1.1",
-    "moment": "^2.22.2"
-  },
   "devDependencies": {
-    "babel-core": "^6.23.1",
-    "babel-loader": "^6.4.0",
-    "babel-preset-env": "^1.7.0",
+    "@babel/core": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
     "browser-sync": "^2.18.8",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^6.1.0",
+    "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^3.9.3",
     "gulp-include": "^2.3.1",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.1.0",
-    "gulp-sass": "^3.1.0",
-    "gulp-sourcemaps": "^2.6.4",
+    "gulp-sass": "^4.1.0",
     "gulp-uglify": "^3.0.0",
-    "webpack": "^2.2.1",
-    "webpack-stream": "^3.2.0"
-  }
+    "node-sass": "^4.14.1"
+  },
+  "dependencies": {}
 }

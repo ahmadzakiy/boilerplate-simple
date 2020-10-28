@@ -1,101 +1,107 @@
-const gulp = require("gulp"),
-  sass = require("gulp-sass"),
-  autoprefixer = require("gulp-autoprefixer"),
-  browserSync = require("browser-sync"),
-  webpack = require("webpack-stream"),
-  uglify = require("gulp-uglify"),
-  cleanCSS = require("gulp-clean-css"),
-  plumber = require("gulp-plumber"),
-  include = require("gulp-include"),
-  sourcemaps = require("gulp-sourcemaps"),
-  notify = require("gulp-notify");
+const gulp = require("gulp");
+const { parallel, series } = require("gulp");
 
-gulp.task("html", () => {
-  return gulp
+const sass = require("gulp-sass");
+const browserSync = require("browser-sync");
+const plumber = require("gulp-plumber");
+const notify = require("gulp-notify");
+const include = require("gulp-include");
+const autoprefixer = require("gulp-autoprefixer");
+const uglify = require("gulp-uglify");
+const cleanCSS = require("gulp-clean-css");
+const babel = require("gulp-babel");
+
+function html(cb) {
+  gulp
     .src("./resource/pages/*.html")
+    .pipe(include())
     .pipe(
       plumber({
         errorHandler: function (err) {
           notify.onError({
             title: "Gulp error in " + err.plugin,
-            message: err.toString()
+            message: err.toString(),
           })(err);
-        }
+        },
       })
     )
-    .pipe(include())
     .pipe(plumber.stop())
     .pipe(gulp.dest("./public"))
     .pipe(notify("HTML updated!"));
-});
+  cb();
+}
 
-gulp.task("css", () => {
-  return gulp
+function css(cb) {
+  gulp
     .src("./resource/assets/sass/**/*.scss")
     .pipe(
       plumber({
         errorHandler: function (err) {
           notify.onError({
             title: "Gulp error in " + err.plugin,
-            message: err.toString()
+            message: err.toString(),
           })(err);
-        }
+        },
       })
     )
-    .pipe(sourcemaps.init())
     .pipe(sass())
     .pipe(autoprefixer())
-    .pipe(cleanCSS({
-      compatibility: "ie8"
-    }))
-    .pipe(sourcemaps.write())
+    .pipe(cleanCSS({ compatibility: "ie8" }))
     .pipe(plumber.stop())
     .pipe(gulp.dest("./public/assets/css/"))
     .pipe(notify("CSS updated!"));
-});
+  cb();
+}
 
-gulp.task("js", () => {
-  return (
-    gulp
-    .src("./resource/assets/js/app.js")
+function js(cb) {
+  gulp
+    .src("./resource/assets/js/*.js")
     .pipe(
       plumber({
         errorHandler: function (err) {
           notify.onError({
             title: "Gulp error in " + err.plugin,
-            message: err.toString()
+            message: err.toString(),
           })(err);
-        }
+        },
       })
     )
-    .pipe(sourcemaps.init())
-    .pipe(webpack(require("./webpack.config.js")))
-    .pipe(uglify({
-      mangle: false
-    }))
-    .pipe(sourcemaps.write())
+    .pipe(
+      babel({
+        presets: ["@babel/preset-env"],
+      })
+    )
+    .pipe(uglify({ mangle: false }))
     .pipe(plumber.stop())
     .pipe(gulp.dest("./public/assets/js/"))
-    .pipe(notify("JS updated!"))
-  );
-});
+    .pipe(notify("JS updated!"));
+  cb();
+}
 
-gulp.task("serve", () => {
+function serve() {
   browserSync.init({
     server: {
-      baseDir: "./public/"
+      baseDir: "./public/",
     },
     port: 3000,
     notify: false,
     ghostMode: false,
     online: false,
-    open: true
+    open: true,
   });
-  gulp.watch("./resource/pages/**/*.html", ["html"]);
-  gulp.watch("./resource/assets/sass/**/*.scss", ["css"]);
-  gulp.watch("./resource/assets/js/**/*.js", ["js"]);
+  gulp
+    .watch("./resource/assets/sass/**/*.scss", css)
+    .on("change", browserSync.reload);
+  gulp
+    .watch("./resource/assets/js/**/*.js", js)
+    .on("change", browserSync.reload);
+  gulp
+    .watch(["./resource/pages/*.html", "./resouce/pages/includes/*.html"], html)
+    .on("change", browserSync.reload);
+}
 
-  gulp.watch("./public/*.html").on("change", browserSync.reload);
-  gulp.watch("./public/assets/css/*.css").on("change", browserSync.reload);
-  gulp.watch("./public/assets/js/*.js").on("change", browserSync.reload);
-});
+// Default 'gulp' command with start local server and watch files for changes.
+exports.default = series(html, css, js, serve);
+
+// 'gulp build' will build all assets but not run on a local server.
+exports.build = parallel(html, css, js);

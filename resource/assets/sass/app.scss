@@ -1,9 +1,28 @@
 @import url("https://fonts.googleapis.com/css?family=Gaegu:300,400,700");
 
-@import "scaffold";
+@import "base";
 @import "styleguide";
 
 body {
   font-family: "Gaegu", cursive;
-  background-color: $primary-white;
+  background-color: $color-white;
+  color: $color-black;
+}
+
+img {
+  width: 50%;
+}
+
+button {
+  display: block;
+  border: none;
+  padding: 8px 24px;
+  margin: 16px 0;
+}
+
+// MOBILE
+@include mobile {
+  img {
+    width: 100%;
+  }
 }

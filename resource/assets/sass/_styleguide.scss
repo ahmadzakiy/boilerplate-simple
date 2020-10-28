@@ -1,14 +1,31 @@
-/* Color Pallete */
-$primary-white: #f2f2f2;
+// Token
+$color-black: #221f1f;
+$color-white: #ffffff;
+$breakpoint-mobile: 480px;
+$breakpoint-desktop: 1280px;
+$breakpoint-large-desktop: 1680px;
 
-/* Instant Classs */
-.row.no-gutters {
-  margin-right: 0;
-  margin-left: 0;
+// Mixins
+@mixin mobile {
+  @media (max-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
 
-  &>[class^="col-"],
-  &>[class*=" col-"] {
-    padding-right: 0;
-    padding-left: 0;
+@mixin small-desktop {
+  @media (min-width: #{$breakpoint-mobile + 1}) and (max-width: #{$breakpoint-desktop - 1}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$breakpoint-desktop}) and (max-width: #{$breakpoint-large-desktop - 1}) {
+    @content;
+  }
+}
+
+@mixin large-desktop {
+  @media (min-width: #{$breakpoint-large-desktop}) {
+    @content;
   }
 }

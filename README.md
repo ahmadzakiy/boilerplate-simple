@@ -1,6 +1,6 @@
 # :curry:nasipadang
 
-#### v.1.1.0
+#### v.2.0.0
 
 ### Simple Boilerplate for Front-End Development
 
@@ -10,26 +10,17 @@ To use this boilerplate
 
 ```
 clone this repo
-npm install / yarn install
+yarn
 ```
 
 To start this boilerplate
 
 ```
-gulp serve
+yarn dev
 ```
 
-#### Other command
+To build production assets
 
 ```
-compile HTML: gulp html
-concat CSS: gulp css
-compile JS: gulp js
+yarn build
 ```
-
-#### Tech Stack
-
-- `SCSS`: Pre-processing CSS
-- `Gulp`: Task Runner
-- `Webpack + Babel`: Compiler ES6
-- `Bootstrap`: Framework CSS
