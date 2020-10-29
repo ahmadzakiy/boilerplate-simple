@@ -1,1 +1,1 @@
-"use strict";var getRandomColor=function(){for(var color="#",i=0;i<6;i++)color+="0123456789ABCDEF"[Math.floor(16*Math.random())];return console.log(color),color};$("#get-color").on("click",function(){$(".title").css("color",getRandomColor())});
+"use strict";var getRandomColor=function(){for(var color="#",i=0;i<6;i++)color+="0123456789ABCDEF"[Math.floor(16*Math.random())];return console.log(color),color};$("#changeColor").on("click",function(){$("body").css("background",getRandomColor())});
